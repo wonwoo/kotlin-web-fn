@@ -22,6 +22,10 @@ class UserHandler {
         return ok().body(users[serverRequest.pathVariable("id")]!!.toDto())
     }
 
+    fun findAllView(serverRequest: ServerRequest): ServerResponse {
+        return ok().render("users", mapOf("users" to users.map { it.value.toDto() }))
+    }
+
 }
 
 data class User(val id: Long, val name: String, val age: Int)

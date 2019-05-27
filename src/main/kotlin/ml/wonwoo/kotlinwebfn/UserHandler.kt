@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component
 import org.springframework.web.servlet.function.ServerRequest
 import org.springframework.web.servlet.function.ServerResponse
 import org.springframework.web.servlet.function.ServerResponse.ok
+import org.springframework.web.servlet.function.body
 
 @Component
 class UserHandler(private val accountRepository: AccountRepository,

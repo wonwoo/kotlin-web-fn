@@ -14,6 +14,7 @@ class RouterRouterUsersConfiguration {
         "/api".nest {
             accept(APPLICATION_JSON).nest {
                 GET("/users", userHandler::findAll)
+                POST("/users", userHandler::save)
             }
             accept(APPLICATION_JSON).nest {
                 GET("/users/{id}", userHandler::findOne)

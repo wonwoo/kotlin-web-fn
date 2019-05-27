@@ -9,7 +9,7 @@ import javax.persistence.Id
 data class Account(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Long,
+        val id: Long? = null,
 
         val name: String,
 

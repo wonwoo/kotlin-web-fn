@@ -7,7 +7,7 @@ import org.springframework.http.MediaType.TEXT_HTML
 import org.springframework.web.servlet.function.router
 
 @Configuration
-class RouterRouterConfiguration {
+class RouterRouterUsersConfiguration {
 
     @Bean
     fun mainRouter(userHandler: UserHandler) = router {

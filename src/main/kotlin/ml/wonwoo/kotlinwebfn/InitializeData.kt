@@ -8,11 +8,10 @@ import org.springframework.stereotype.Component
 class InitializeData {
 
     @Bean
-    fun init(repository: AccountRepository) = CommandLineRunner {
+    fun init(repository: AccountRepository, postRepository: PostRepository) = CommandLineRunner {
         repository.save(Account(1, "wonwoo", 22))
         repository.save(Account(2, "foo", 32))
         repository.save(Account(3, "bar", 28))
-
+        postRepository.save(Post("test post", "test content"))
     }
-
 }

@@ -9,18 +9,17 @@ import org.springframework.web.servlet.function.ServerResponse.ok
 class UserHandler(private val accountRepository: AccountRepository,
                   private val accountConverter: AccountConverter) {
 
-    fun findAll(serverRequest: ServerRequest): ServerResponse {
-        return ok().body(accountRepository.findAll().map { accountConverter(it) })
-    }
+    fun findAll(serverRequest: ServerRequest): ServerResponse =
+            ok().body(accountRepository.findAll().map { accountConverter(it) })
 
-    fun findOne(serverRequest: ServerRequest): ServerResponse {
-        return ok().body(accountRepository.findById(serverRequest.pathVariable("id").toLong())
-                .orElseThrow { IllegalArgumentException() })
-    }
 
-    fun findAllView(serverRequest: ServerRequest): ServerResponse {
-        return ok().render("users", mapOf("users" to accountRepository.findAll().map { it.toDto() }))
-    }
+    fun findOne(serverRequest: ServerRequest): ServerResponse =
+            ok().body(accountRepository.findById(serverRequest.pathVariable("id").toLong())
+                    .orElseThrow { IllegalArgumentException() })
+
+    fun findAllView(serverRequest: ServerRequest): ServerResponse =
+            ok().render("users", mapOf("users" to accountRepository.findAll().map { it.toDto() }))
+
 
 }
 

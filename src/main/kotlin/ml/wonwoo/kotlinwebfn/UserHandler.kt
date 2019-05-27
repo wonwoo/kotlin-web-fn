@@ -13,11 +13,11 @@ class UserHandler(private val accountRepository: AccountRepository,
             ok().body(accountRepository.findAll().map { accountConverter(it) })
 
 
-    fun findOne(serverRequest: ServerRequest): ServerResponse =
+    fun findOne(serverRequest: ServerRequest) =
             ok().body(accountRepository.findById(serverRequest.pathVariable("id").toLong())
                     .orElseThrow { IllegalArgumentException() })
 
-    fun findAllView(serverRequest: ServerRequest): ServerResponse =
+    fun findAllView(serverRequest: ServerRequest) =
             ok().render("users", mapOf("users" to accountRepository.findAll().map { it.toDto() }))
 
 

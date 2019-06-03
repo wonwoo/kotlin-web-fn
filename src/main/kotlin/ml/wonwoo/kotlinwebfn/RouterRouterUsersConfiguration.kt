@@ -6,7 +6,7 @@ import org.springframework.http.MediaType.APPLICATION_JSON
 import org.springframework.http.MediaType.TEXT_HTML
 import org.springframework.web.servlet.function.router
 
-@Configuration
+@Configuration(proxyBeanMethods = false)
 class RouterRouterUsersConfiguration {
 
     @Bean

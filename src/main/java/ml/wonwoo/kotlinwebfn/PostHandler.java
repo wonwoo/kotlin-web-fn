@@ -7,7 +7,7 @@ import org.springframework.web.servlet.function.ServerRequest;
 import org.springframework.web.servlet.function.ServerResponse;
 
 @Component
-public class PostHandler {
+class PostHandler {
 
     private final PostRepository postRepository;
 

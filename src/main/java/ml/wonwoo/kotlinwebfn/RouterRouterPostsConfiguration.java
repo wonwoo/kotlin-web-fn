@@ -11,11 +11,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.function.RouterFunction;
 
-@Configuration
-public class RouterRouterPostsConfiguration {
+@Configuration(proxyBeanMethods = false)
+class RouterRouterPostsConfiguration {
 
     @Bean
-    public RouterFunction<?> postRouter(PostHandler postHandler) {
+    RouterFunction<?> postRouter(PostHandler postHandler) {
         return nest(path("/api"),
             route(accept(APPLICATION_JSON)
                 .and(GET("/posts")), postHandler::getPosts))

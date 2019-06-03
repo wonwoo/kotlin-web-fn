@@ -16,11 +16,11 @@ class Post {
 
     private String content;
 
-    Post() {
+    private Post() {
 
     }
 
-    public Post(String title, String content) {
+    Post(String title, String content) {
         this.title = title;
         this.content = content;
     }

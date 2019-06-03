@@ -16,6 +16,7 @@ class Post {
 
     private String content;
 
+    @SuppressWarnings("unused")
     private Post() {
 
     }

@@ -15,7 +15,7 @@ class PostHandler {
         this.postRepository = postRepository;
     }
 
-    ServerResponse getPosts(ServerRequest serverRequest) {
+    ServerResponse getPosts(@SuppressWarnings("unused") ServerRequest serverRequest) {
         return ok().body(postRepository.findAll());
     }
 }

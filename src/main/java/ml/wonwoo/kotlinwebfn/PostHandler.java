@@ -15,7 +15,7 @@ class PostHandler {
         this.postRepository = postRepository;
     }
 
-    public ServerResponse getPosts(ServerRequest serverRequest) {
+    ServerResponse getPosts(ServerRequest serverRequest) {
         return ok().body(postRepository.findAll());
     }
 }

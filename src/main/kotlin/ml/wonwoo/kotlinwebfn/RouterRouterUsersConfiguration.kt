@@ -10,7 +10,7 @@ import org.springframework.web.servlet.function.router
 class RouterRouterUsersConfiguration {
 
     @Bean
-    fun mainRouter(userHandler: UserHandler) = router {
+    fun usersRouter(userHandler: UserHandler) = router {
         "/api".nest {
             accept(APPLICATION_JSON).nest {
                 GET("/users", userHandler::findAll)

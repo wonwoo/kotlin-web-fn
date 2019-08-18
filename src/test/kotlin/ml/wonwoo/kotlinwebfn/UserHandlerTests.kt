@@ -8,6 +8,8 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.mock.mockito.SpyBean
 import org.springframework.context.annotation.Import
 import org.springframework.http.MediaType.APPLICATION_JSON
+import org.springframework.test.context.TestConstructor
+import org.springframework.test.context.TestConstructor.AutowireMode.ALL
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.post
@@ -16,7 +18,8 @@ import java.util.Optional
 
 @WebMvcTest(UserHandler::class)
 @Import(RouterRouterUsersConfiguration::class)
-internal class UserHandlerTests(@Autowired private val mockMvc: MockMvc) {
+@TestConstructor(autowireMode = ALL)
+internal class UserHandlerTests(private val mockMvc: MockMvc) {
 
     @MockBean
     private lateinit var accountRepository: AccountRepository
@@ -25,7 +28,7 @@ internal class UserHandlerTests(@Autowired private val mockMvc: MockMvc) {
     private lateinit var accountConverter: AccountConverter
 
     @Test
-    fun `users test`() {
+    fun `find all users test`() {
 
         given(accountRepository.findAll()).willReturn(listOf(
             Account(1, "wonwoo", 22),
@@ -51,7 +54,7 @@ internal class UserHandlerTests(@Autowired private val mockMvc: MockMvc) {
 
 
     @Test
-    fun `user test`() {
+    fun `find one user test`() {
 
         given(accountRepository.findById(1)).willReturn(
             Optional.of(Account(1, "wonwoo", 22)))
@@ -87,10 +90,10 @@ internal class UserHandlerTests(@Autowired private val mockMvc: MockMvc) {
             status { isOk }
             content { contentType(APPLICATION_JSON) }
             jsonPath("$.name") { value("test") }
+            jsonPath("$.age") { value("11") }
             content { json("""{"name":"test","age":11}""") }
         }.andDo {
             print()
         }
-
     }
 }

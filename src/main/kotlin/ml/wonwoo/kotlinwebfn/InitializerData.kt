@@ -10,6 +10,7 @@ interface InitializerData {
 
     @Component
     class NoopInitializerData : InitializerData {
+
         override fun initializer() {
             //nothing
         }

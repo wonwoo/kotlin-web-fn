@@ -8,6 +8,8 @@ class InitializerDataInvoker(private val initializerData: List<InitializerData>)
         CommandLineRunner {
 
     override fun run(vararg args: String?) {
+
         initializerData.forEach { it.initializer() }
+
     }
 }

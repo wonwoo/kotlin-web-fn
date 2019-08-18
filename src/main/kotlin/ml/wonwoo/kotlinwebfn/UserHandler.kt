@@ -1,5 +1,6 @@
 package ml.wonwoo.kotlinwebfn
 
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 import org.springframework.web.servlet.function.ServerRequest
 import org.springframework.web.servlet.function.ServerResponse
@@ -14,8 +15,8 @@ class UserHandler(private val accountRepository: AccountRepository,
             ok().body(accountRepository.findAll().map { accountConverter(it) })
 
     fun findOne(serverRequest: ServerRequest) =
-            ok().body(accountRepository.findById(serverRequest.pathVariable("id").toLong())
-                    .orElseThrow { IllegalArgumentException() })
+            ok().body(accountRepository.findByIdOrNull(serverRequest.pathVariable("id").toLong())
+                ?: throw IllegalArgumentException())
 
     fun findAllView(serverRequest: ServerRequest) =
             ok().render("users", mapOf("users" to accountRepository.findAll().map { it.toDto() }))

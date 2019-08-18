@@ -43,7 +43,7 @@ internal class UserHandlerTests(@Autowired private val mockMvc: MockMvc) {
             jsonPath("$[0].name") { value("wonwoo") }
             jsonPath("$[1].name") { value("foo") }
             jsonPath("$[2].name") { value("bar") }
-            content { json("""[{"name":"wonwoo","age":22},{"name":"foo","age":32},{"name":"bar","age":28}]""", false) }
+            content { json("""[{"name":"wonwoo","age":22},{"name":"foo","age":32},{"name":"bar","age":28}]""") }
         }.andDo {
             print()
         }
@@ -65,7 +65,7 @@ internal class UserHandlerTests(@Autowired private val mockMvc: MockMvc) {
             status { isOk }
             content { contentType(APPLICATION_JSON) }
             jsonPath("$.name") { value("wonwoo") }
-            content { json("""{"name":"wonwoo","age":22}""", false) }
+            content { json("""{"name":"wonwoo","age":22}""") }
         }.andDo {
             print()
         }
@@ -87,7 +87,7 @@ internal class UserHandlerTests(@Autowired private val mockMvc: MockMvc) {
             status { isOk }
             content { contentType(APPLICATION_JSON) }
             jsonPath("$.name") { value("test") }
-            content { json("""{"name":"test","age":11}""", false) }
+            content { json("""{"name":"test","age":11}""") }
         }.andDo {
             print()
         }

@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Import
 import org.springframework.http.MediaType.APPLICATION_JSON
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
+import org.springframework.test.web.servlet.post
 import java.util.Locale
 import java.util.Optional
 
@@ -68,5 +69,28 @@ internal class UserHandlerTests(@Autowired private val mockMvc: MockMvc) {
         }.andDo {
             print()
         }
+    }
+
+    @Test
+    fun `user save test`() {
+        given(accountRepository.save(Account(name = "test", age = 11))).willReturn(
+            Account(1, "test", 11))
+
+        mockMvc.post("/api/users") {
+            accept = APPLICATION_JSON
+            contentType = APPLICATION_JSON
+            content = """{"name":"test", "age":11}"""
+            headers {
+                contentLanguage = Locale.KOREA
+            }
+        }.andExpect {
+            status { isOk }
+            content { contentType(APPLICATION_JSON) }
+            jsonPath("$.name") { value("test") }
+            content { json("""{"name":"test","age":11}""", false) }
+        }.andDo {
+            print()
+        }
+
     }
 }

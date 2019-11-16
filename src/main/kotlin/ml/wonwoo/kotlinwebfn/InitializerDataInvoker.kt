@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class InitializerDataInvoker(private val initializerData: List<InitializerData>) :
-        CommandLineRunner {
+    CommandLineRunner {
 
     override fun run(vararg args: String?) {
 

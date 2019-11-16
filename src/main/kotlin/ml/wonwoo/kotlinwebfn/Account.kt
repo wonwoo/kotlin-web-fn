@@ -7,11 +7,11 @@ import javax.persistence.Id
 
 @Entity
 data class Account(
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Long? = null,
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = null,
 
-        val name: String,
+    val name: String,
 
-        val age: Int
+    val age: Int
 )
